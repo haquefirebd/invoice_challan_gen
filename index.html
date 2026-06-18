@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO Best Practices -->
+  <title>N.I. Engineering Services - Challan Editor & Print Tool</title>
+  <meta name="description" content="Generate, edit, and print pixel-perfect Challans for N.I. Engineering Services. Fits exactly on A4 size, visual parity guaranteed.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Control Panel (Screen-only, hidden during print) -->
+  <header class="control-panel no-print" id="controlPanel">
+    <div class="control-container">
+      <div class="brand">
+        <span class="brand-title">N.I. Engineering Services</span>
+        <span class="brand-subtitle">Challan Creator & Print Utility</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary" id="clearBtn" title="Clear all fields in the form">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+          Clear Form
+        </button>
+        <button class="btn btn-secondary" id="removeRowBtn" title="Remove the last row of the table">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+          </svg>
+          Remove Row
+        </button>
+        <button class="btn btn-secondary" id="addRowBtn" title="Add a new row to the table">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+          Add Row
+        </button>
+        <button class="btn btn-accent" id="pdfBtn" title="Export this Challan as a PDF document">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Save as PDF
+        </button>
+        <button class="btn btn-primary" id="printBtn" title="Print this Challan to paper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Print Challan
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- A4 Page Simulation wrapper -->
+  <main class="page-preview-wrapper">
+    <div class="challan-page" id="challanPage">
+      
+      <!-- Outer Border -->
+      <div class="outer-border">
+        
+        <!-- Faint Watermark Logo Background (Centered behind table content) -->
+        <div class="watermark-container" aria-hidden="true">
+          <img src="images/watermark.png" alt="Watermark Logo" class="watermark-img" id="watermarkLogo">
+        </div>
+
+        <!-- Document Content -->
+        <div class="content-wrapper">
+          
+          <!-- Company Header Area -->
+          <section class="header-container">
+            <div class="header-banner">
+              <img src="images/logo.png" alt="N.I. Engineering Services" class="header-banner-img">
+            </div>
+
+            <!-- Address lines -->
+            <div class="address-info">
+              <div class="address-line">
+                <span class="address-label">Office :</span> House # Ga- 85 (Gr. Floor) Middle Badda, Gulshan, Dhaka-1212, Bangladesh. <span class="address-label">Cell :</span> +88 01711 135731, +88 01670 236785, <span class="address-label">Phone:</span> +88-02-226600565
+              </div>
+              <div class="address-line">
+                &#9993; : niengineeringbd@gmail.com &#9993; info@niengineeringbd.com, <span class="address-label">Factory:</span> House-235, Badsha Mia School Road, South Khilkir, Tongi, Gazipur-1704
+              </div>
+            </div>
+          </section>
+
+          <!-- Challan No, Challan Badge, Date section -->
+          <section class="metadata-row">
+            <div class="challan-no-box">
+              <label for="challanNo" class="metadata-label">Challan No.</label>
+              <input type="text" id="challanNo" class="challan-input" placeholder="..................................................">
+            </div>
+            
+            <div class="challan-badge-container">
+              <span class="challan-badge">CHALLAN</span>
+            </div>
+            
+            <div class="date-box-group">
+              <span class="date-label">Date :</span>
+              <div class="date-input-container">
+                <input type="text" id="dateDay" class="date-part-input" maxlength="2" placeholder="D" aria-label="Day">
+                <input type="text" id="dateMonth" class="date-part-input" maxlength="2" placeholder="M" aria-label="Month">
+                <input type="text" id="dateYear" class="date-part-input" maxlength="4" placeholder="Y" aria-label="Year">
+              </div>
+            </div>
+          </section>
+
+          <!-- Customer details fields -->
+          <section class="customer-info-container">
+            <div class="form-row">
+              <label for="customerName" class="form-label">Name :</label>
+              <input type="text" id="customerName" class="form-dotted-input">
+            </div>
+            <div class="form-row">
+              <label for="customerAddress" class="form-label">Address :</label>
+              <input type="text" id="customerAddress" class="form-dotted-input">
+            </div>
+            <div class="form-row">
+              <label for="customerCell" class="form-label">Cell No :</label>
+              <input type="text" id="customerCell" class="form-dotted-input">
+            </div>
+          </section>
+
+          <!-- Interactive Items Table -->
+          <section class="table-area">
+            <table class="challan-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="width: 6%;">Sl.</th>
+                  <th scope="col" style="width: 68%;">Description of Item</th>
+                  <th scope="col" style="width: 13%;">Quantity</th>
+                  <th scope="col" style="width: 13%;">Remarks</th>
+                </tr>
+              </thead>
+              <tbody id="challanTableBody">
+                <!-- 16 rows will be dynamically generated by js/app.js -->
+                <!-- A fallback layout is outputted for semantic structural layout -->
+                <tr>
+                  <td><span class="sl-text">1</span></td>
+                  <td><input type="text" class="table-cell-input align-left" aria-label="Description of Item 1"></td>
+                  <td><input type="text" class="table-cell-input align-center" aria-label="Quantity of Item 1"></td>
+                  <td><input type="text" class="table-cell-input align-left" aria-label="Remarks of Item 1"></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <!-- Background colored footer line row to close table structure -->
+                <tr class="table-footer-row">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </section>
+
+          <!-- Signatures & Website Footer links -->
+          <section class="signatures-container">
+            <div class="sig-block">
+              <div class="sig-line"></div>
+              <span class="sig-label">Received by</span>
+            </div>
+            
+            <div class="site-footer">
+              <a href="http://www.niengineeringbd.com" target="_blank" class="site-link">www.niengineeringbd.com</a>
+            </div>
+            
+            <div class="sig-block">
+              <div class="sig-line"></div>
+              <span class="sig-label">For-N.I. Engineering Services</span>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
