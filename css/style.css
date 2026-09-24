@@ -268,20 +268,25 @@ body {
 /* Address Info block */
 .address-info {
   width: 100%;
-  font-size: 6.7pt;
-  line-height: 1.5;
+  font-size: 6.75pt;
+  font-weight: 700;
+  line-height: 1.55;
   color: #000000;
   margin-top: 3px;
   margin-bottom: 3px;
-  text-align: justify;
-  text-align-last: justify;
+  text-align: center;
+  letter-spacing: -0.01px;
 }
 
 .address-line {
   width: 100%;
   margin: 2px 0;
-  font-weight: 500;
+  font-weight: 700;
   white-space: nowrap;
+}
+
+.addr-bold {
+  font-weight: 700;
 }
 
 .address-label {
@@ -671,10 +676,10 @@ body {
   }
 
   .page-preview-wrapper.a4-mode .address-info {
-    font-size: 6.7pt !important;
-    line-height: 1.5 !important;
-    text-align: justify !important;
-    text-align-last: justify !important;
+    font-size: 6.75pt !important;
+    font-weight: 700 !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
   }
 
   .page-preview-wrapper.a4-mode .address-line {
@@ -684,9 +689,9 @@ body {
   /* Address Info */
   .address-info {
     font-size: 7.2pt;
-    line-height: 1.4;
+    font-weight: 700;
+    line-height: 1.45;
     text-align: center;
-    text-align-last: center;
   }
 
   .address-line {
@@ -942,20 +947,25 @@ body {
 
   .address-info {
     width: 100% !important;
-    font-size: 6.7pt !important;
-    line-height: 1.5 !important;
+    font-size: 6.75pt !important;
+    font-weight: 700 !important;
+    line-height: 1.55 !important;
     color: #000000 !important;
     margin-top: 3px !important;
     margin-bottom: 3px !important;
-    text-align: justify !important;
-    text-align-last: justify !important;
+    text-align: center !important;
+    letter-spacing: -0.01px !important;
   }
 
   .address-line {
     width: 100% !important;
     margin: 2px 0 !important;
-    font-weight: 500 !important;
+    font-weight: 700 !important;
     white-space: nowrap !important;
+  }
+
+  .addr-bold {
+    font-weight: 700 !important;
   }
 
   .address-label {
