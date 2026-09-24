@@ -2,6 +2,9 @@
 
 A pixel-perfect, offline-ready, responsive Challan web application recreation for N.I. Engineering Services. 
 
+## Live Application
+👉 **[Open Challan Editor on GitHub Pages](https://haquefirebd.github.io/invoice_challan_gen/)**
+
 ## Features
 * **Interactive Editing**: All metadata, customer detail fields, and 16 table rows are fully editable in-browser.
 * **Auto-Tabbing Date**: Date fields (D-M-Y) auto-tab focus.
