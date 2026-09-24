@@ -268,26 +268,20 @@ body {
 /* Address Info block */
 .address-info {
   width: 100%;
-  font-size: 7.8pt;
+  font-size: 6.7pt;
   line-height: 1.5;
   color: #000000;
   margin-top: 3px;
   margin-bottom: 3px;
+  text-align: justify;
+  text-align-last: justify;
 }
 
 .address-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   margin: 2px 0;
   font-weight: 500;
   white-space: nowrap;
-  letter-spacing: 0.04px;
-}
-
-.address-line span {
-  display: inline-block;
 }
 
 .address-label {
@@ -677,31 +671,28 @@ body {
   }
 
   .page-preview-wrapper.a4-mode .address-info {
-    font-size: 7.8pt !important;
+    font-size: 6.7pt !important;
     line-height: 1.5 !important;
+    text-align: justify !important;
+    text-align-last: justify !important;
   }
 
   .page-preview-wrapper.a4-mode .address-line {
     white-space: nowrap !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
-    text-align: left !important;
   }
 
   /* Address Info */
   .address-info {
     font-size: 7.2pt;
     line-height: 1.4;
+    text-align: center;
+    text-align-last: center;
   }
 
   .address-line {
     white-space: normal;
     margin: 3px 0;
     word-break: break-word;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    gap: 2px 8px;
   }
 
   /* Metadata row */
@@ -951,26 +942,20 @@ body {
 
   .address-info {
     width: 100% !important;
-    font-size: 7.8pt !important;
+    font-size: 6.7pt !important;
     line-height: 1.5 !important;
     color: #000000 !important;
     margin-top: 3px !important;
     margin-bottom: 3px !important;
+    text-align: justify !important;
+    text-align-last: justify !important;
   }
 
   .address-line {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
     width: 100% !important;
     margin: 2px 0 !important;
     font-weight: 500 !important;
     white-space: nowrap !important;
-    letter-spacing: 0.04px !important;
-  }
-
-  .address-line span {
-    display: inline-block !important;
   }
 
   .address-label {
